@@ -1,0 +1,307 @@
+\documentclass[a4paper,12pt]{article}
+
+% Pacotes úteis
+\usepackage[utf8]{inputenc}  % Suporte para caracteres UTF-8
+\usepackage[T1]{fontenc}     % Melhora a saída de caracteres especiais
+\usepackage{lmodern}         % Fonte moderna
+\usepackage{amsmath, amssymb, amsthm} % Ferramentas para matemática
+\usepackage{graphicx}        % Inclusão de imagens
+\usepackage{geometry}        % Margens personalizadas
+\usepackage{setspace}        % Controle do espaçamento entre linhas
+\usepackage{hyperref}        % Links clicáveis
+\usepackage{cite}            % Gerenciamento de referências
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs} % Para tabelas profissionais
+\usepackage{multirow} % Para mesclar células
+
+\geometry{margin=1in}        % Define as margens
+
+% Título, autor e data
+\title{Desigualdade de educação no Brasil. evidências para o ano de 2023}
+\author{André Santos\\
+    \small{Universidade Federal da Paraíba} \\
+    \small{\texttt{andre.brandao@academico.ufpb.br}}
+}
+\date{\today}
+
+% Início do documento
+\begin{document}
+
+\maketitle  % Gera o título
+
+\begin{abstract}
+    Este artigo investiga as desigualdades de gênero e raça na educação, analisando a probabilidade de conclusão dos níveis fundamental, médio e superior no Brasil. Utilizando dados da Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua) de 2023, foram estimados modelos de regressão logística para avaliar o impacto das variáveis HOMEM (sexo masculino) e BRANCO (raça branca) sobre a conclusão dos três níveis educacionais. Os resultados revelaram padrões de desigualdade que favorecem majoritariamente pessoas brancas e do sexo feminino no nível superior.
+    Os resultados destacam a necessidade de políticas públicas específicas para reduzir as desigualdades de gênero e raça na educação, como programas de retenção escolar para homens jovens e ações afirmativas para populações não brancas no ensino superior. O estudo também aponta limitações, como a ausência de variáveis socioeconômicas e a não consideração de interações entre gênero e raça, sugerindo direções para pesquisas futuras. Conclui-se que a promoção da equidade educacional requer intervenções direcionadas e contínuas, garantindo oportunidades iguais para todos os indivíduos, independentemente de gênero ou raça.
+
+\end{abstract}
+
+\section{Introdução}
+A desigualdade na educação é uma das principais barreiras para o desenvolvimento socioeconômico do Brasil, um país caracterizado por sua vasta diversidade cultural e regional. Embora o acesso à educação tenha aumentado significativamente nas últimas décadas, permanecem disparidades marcantes em termos de qualidade, infraestrutura e resultados educacionais entre diferentes grupos socioeconômicos e regiões do país. Essas desigualdades são reflexo de fatores históricos, econômicos e políticos que moldaram o sistema educacional brasileiro.
+No contexto de 2023, novas evidências destacam a persistência e, em alguns casos, o agravamento dessas desigualdades, especialmente em um cenário de recuperação econômica e social após os impactos da pandemia de COVID-19. A pandemia aprofundou lacunas já existentes, como o acesso desigual à tecnologia e a recursos de ensino remoto, afetando especialmente estudantes em situações de vulnerabilidade.
+Este artigo busca explorar as evidências mais recentes sobre as desigualdades educacionais no Brasil em 2023, analisando aspectos como desigualdade de gênero e raça. 
+
+\newpage
+
+\section{Revisão da Literatura}
+
+
+A educação é um dos principais indicadores de desenvolvimento e bem-estar social, sendo central nos Objetivos de Desenvolvimento Sustentável (ODS) das Nações Unidas. Dentro dessa perspectiva, diversos estudos analisam diferentes aspectos da gestão educacional e da desigualdade na educação, fornecendo evidências empíricas sobre o impacto de políticas públicas e dos fatores estruturais na aprendizagem dos alunos.
+
+Um primeiro eixo de análise se refere à gestão escolar e seus impactos na qualidade da educação. Estudo realizado sobre um programa piloto de gestão escolar na rede estadual de São Paulo, implantado em 2008, demonstrou efeitos positivos sobre o desempenho dos alunos em matemática na 8ª série, mas sem impacto significativo nas notas de língua portuguesa. O programa envolveu treinamento de gestores, estabelecimento de metas e monitoramento de indicadores de aprendizagem. A análise, conduzida por meio da metodologia de regressão com descontinuidade, sugere que mudanças na gestão podem melhorar aspectos específicos do desempenho estudantil.
+
+Outro aspecto relevante é o impacto da remuneração dos professores sobre a aprendizagem dos alunos. Na rede estadual paulista, professores recebem aumentos salariais regulares baseados no tempo de serviço, além de bonificações vinculadas ao desempenho dos estudantes em testes padronizados. No entanto, estudos que utilizaram estratégias de diferenças duplas e triplas não encontraram evidências conclusivas de que o aumento dos salários fixos ou a presença de bonificações influenciem significativamente a proficiência dos alunos.
+
+A desigualdade educacional também é um tema central na literatura. Uma análise da desigualdade de oportunidades na educação identificou que fatores relacionados às redes de ensino e às escolas têm um papel substancial na formação do aprendizado dos alunos. Estima-se que 50%-60% do desempenho dos alunos seja influenciado pela rede de ensino, enquanto 40%-45% está associado às práticas escolares. Destaca-se que entre 10% e 15% da desigualdade de notas é passível de intervenção por meio de políticas educacionais centrais, mas que escapam ao controle direto dos diretores escolares. Além disso, há evidências de que entre 10% e 23% das desigualdades educacionais atribuídas ao perfil socioeconômico dos alunos podem ser mitigadas por políticas educacionais adequadas.
+
+No contexto internacional, a modelagem da distribuição dos anos de escolaridade permite explorar tendências da desigualdade educacional desde 1970 e prever o progresso em direção às metas dos ODS para 2030. Projeções indicam que a educação primária universal estará próxima de ser atingida em 2030, mas desafios persistem nas taxas de conclusão do ensino secundário e superior. Além disso, observa-se uma redução na desigualdade educacional global desde o pico atingido em 2017, e a expectativa é de uma tendência decrescente até 2030.
+
+No que tange à desigualdade de gênero, estudos apontam que a diferença na escolarização entre homens e mulheres foi praticamente eliminada até 2018 em escala global. Contudo, persistem disparidades significativas em regiões como África Subsaariana, Norte da África e Oriente Médio. As projeções indicam que, até 2030, as mulheres terão alcançado maior nível educacional do que os homens em 18 países.
+
+Dessa forma, a literatura revisada destaca que a gestão escolar, a remuneração docente e as políticas educacionais exercem impactos variados sobre a qualidade do ensino e a desigualdade educacional. Compreender essas relações é fundamental para o desenvolvimento de políticas públicas mais eficazes que promovam uma distribuição mais equitativa do capital humano e a construção de sociedades mais justas.
+\newpage
+
+
+\section{Metodologia e base de dados}
+
+
+\subsection{Modelo Econométrico}
+
+Para analisar os determinantes da conclusão dos níveis de educação fundamental, médio e superior, utilizamos um modelo de regressão logística (\textit{logit}). A escolha do modelo \textit{logit} é apropriada, uma vez que a variável dependente é binária, assumindo o valor 1 se o indivíduo completou o nível educacional em questão e 0 caso contrário. Formalmente, o modelo é especificado da seguinte forma:
+
+Seja \( Y_i \) uma variável binária que indica se o indivíduo \( i \) completou um determinado nível educacional. A probabilidade de \( Y_i = 1 \) condicional às variáveis explicativas é modelada como:
+
+\[
+P(Y_i = 1 | X_i) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 HOMEM_i + \beta_2 BRANCO_i)}}
+\]
+
+onde:
+\begin{itemize}
+    \item \( HOMEM_i \) é uma variável binária que assume o valor 1 se o indivíduo \( i \) é do sexo masculino e 0 caso contrário;
+    \item \( BRANCO_i \) é uma variável binária que assume o valor 1 se o indivíduo \( i \) se declara branco e 0 caso contrário;
+    \item \( \beta_0 \) é o intercepto do modelo;
+    \item \( \beta_1 \) e \( \beta_2 \) são os coeficientes associados às variáveis \( HOMEM_i \) e \( BRANCO_i \), respectivamente.
+\end{itemize}
+
+A função de verossimilhança para o modelo \textit{logit} é dada por:
+
+\[
+\mathcal{L}(\beta) = \prod_{i=1}^N \left[ P(Y_i = 1 | X_i)^{Y_i} \cdot (1 - P(Y_i = 1 | X_i))^{1 - Y_i} \right]
+\]
+
+onde \( N \) é o número de observações na amostra. Os parâmetros \( \beta \) são estimados por máxima verossimilhança (\textit{Maximum Likelihood Estimation} - MLE), maximizando a função de log-verossimilhança:
+
+\[
+\ln \mathcal{L}(\beta) = \sum_{i=1}^N \left[ Y_i \ln P(Y_i = 1 | X_i) + (1 - Y_i) \ln (1 - P(Y_i = 1 | X_i)) \right]
+\]
+
+\subsection{Especificações do Modelo}
+
+O modelo \textit{logit} é estimado de forma equivalente para três variáveis dependentes distintas, representando a conclusão dos seguintes níveis educacionais:
+\begin{enumerate}
+    \item \textbf{Fundamental Completo}: \( Y_i = 1 \) se o indivíduo completou o ensino fundamental e \( Y_i = 0 \) caso contrário.
+    \item \textbf{Ensino Médio Completo}: \( Y_i = 1 \) se o indivíduo completou o ensino médio e \( Y_i = 0 \) caso contrário.
+    \item \textbf{Ensino Superior Completo}: \( Y_i = 1 \) se o indivíduo completou o ensino superior e \( Y_i = 0 \) caso contrário.
+\end{enumerate}
+
+Para cada uma dessas variáveis dependentes, as variáveis explicativas \( HOMEM_i \) e \( BRANCO_i \) são incluídas no modelo, conforme descrito anteriormente.
+
+\subsection{Bases de Dados}
+
+A base de dados utilizada neste estudo é a Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), referente ao ano de 2023. A PNAD Contínua é uma pesquisa domiciliar realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), que fornece informações detalhadas sobre características demográficas, socioeconômicas e educacionais da população brasileira.
+
+Para este estudo, foram selecionados os indivíduos com idade superior a 25 anos, uma vez que essa faixa etária é considerada adequada para analisar a conclusão dos níveis educacionais de interesse. A amostra final consiste em \( N \) observações, após a exclusão de casos com informações faltantes (\textit{missing values}) nas variáveis de interesse.
+
+\subsection{Tratamento dos Dados}
+
+As variáveis utilizadas no modelo foram construídas da seguinte forma:
+\begin{itemize}
+    \item \textbf{Fundamental Completo}: Indivíduos que declararam ter concluído o 9º ano do ensino fundamental, sem nível médio ou superior.
+    \item \textbf{Ensino Médio Completo}: Indivíduos que declararam ter concluído o 3º ano do ensino médio, sem nível superior.
+    \item \textbf{Ensino Superior Completo}: Indivíduos que declararam ter concluído um curso de graduação.
+    \item \textbf{HOMEM}: Indivíduos do sexo masculino (categoria de referência: sexo feminino).
+    \item \textbf{BRANCO}: Indivíduos que se declararam brancos (categoria de referência: não brancos).
+\end{itemize}
+
+\subsection{Testes de Diagnóstico do Modelo}
+
+Para garantir a robustez e a adequação do modelo de regressão logística, foram realizados testes de diagnóstico para avaliar a presença de multicolinearidade e heterocedasticidade.
+
+\subsubsection{Teste de Multicolinearidade}
+
+A multicolinearidade ocorre quando há alta correlação entre as variáveis explicativas, o que pode inflacionar os erros padrão dos coeficientes e comprometer a precisão das estimativas. Para detectar a presença de multicolinearidade, utilizou-se o \textit{Fator de Inflação da Variância} (VIF). O VIF é calculado para cada variável explicativa, e valores superiores a 10 indicam problemas de multicolinearidade \cite{fox2015}. No presente estudo, todas as variáveis apresentaram valores de VIF inferiores a 10, indicando que a multicolinearidade não é uma preocupação no modelo estimado, conforme demonstrado na tabela abaixo:
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados do Teste de Fator de Inflação da Variância (VIF) para os Modelos de Ensino Fundamental, Médio e Superior}
+    \label{tab:vif}
+    \begin{tabular}{lcc}
+    \toprule
+    \textbf{Nível de Ensino} & \textbf{HOMEM} & \textbf{BRANCO} \\
+    \midrule
+    Ensino Fundamental & 1.000187 & 1.000187 \\
+    Ensino Médio       & 1.000206 & 1.000206 \\
+    Ensino Superior    & 1.000054 & 1.000054 \\
+    \bottomrule
+    \end{tabular}
+    \smallskip
+    
+    \footnotesize{\textit{Nota: Valores de VIF próximos a 1 indicam ausência de multicolinearidade.}}
+\end{table}
+
+\subsubsection{Teste de Heterocedasticidade}
+
+A heterocedasticidade ocorre quando a variância dos resíduos do modelo não é constante ao longo das observações, o que pode levar a inferências estatísticas incorretas. Para verificar a presença de heterocedasticidade, foi utilizado o teste de Breusch-Pagan \cite{breusch1979}. A hipótese nula do teste é que os resíduos são homocedásticos. No presente estudo, o teste de Breusch-Pagan rejeitou a hipótese nula (\(p > 0,05\)), indicando que há evidências de heterocedasticidade nos resíduos do modelo. Como medida adicional de robustez, foram utilizados erros padrão robustos nas estimativas dos coeficientes.
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados do Teste de Breusch-Pagan para Heterocedasticidade nos Modelos de Ensino Fundamental, Médio e Superior}
+    \label{tab:breusch_pagan}
+    \begin{tabular}{lccc}
+    \toprule
+    \textbf{Nível de Ensino} & \textbf{Estatística BP} & \textbf{Graus de Liberdade (df)} & \textbf{Valor-p} \\
+    \midrule
+    Ensino Fundamental & 787.99 & 2 & \(< 2.2 \times 10^{-16}\) \\
+    Ensino Médio       & 135.87 & 2 & \(< 2.2 \times 10^{-16}\) \\
+    Ensino Superior    & 37918  & 2 & \(< 2.2 \times 10^{-16}\) \\
+    \bottomrule
+    \end{tabular}
+    \smallskip
+    \footnotesize{\textit{Nota: Um valor-p \(< 0.05\) indica evidências de heterocedasticidade.}}
+\end{table}
+\newpage
+
+\section{Resultados}
+Nesta seção, apresentamos os resultados dos modelos de regressão logística estimados para os três níveis de ensino: fundamental, médio e superior. Os coeficientes estimados, erros padrão, valores-z e valores-p são analisados para avaliar o impacto das variáveis explicativas **HOMEM** e **BRANCO** sobre a probabilidade de conclusão de cada nível educacional. Adicionalmente, discutimos a significância estatística dos coeficientes e suas implicações práticas.
+
+\subsection{Modelo para o Ensino Fundamental}
+
+O modelo de regressão logística para o ensino fundamental apresentou os seguintes resultados:
+
+\begin{equation}
+\text{Logito}(Y) = -1.9688 + 0.0880 \cdot \text{HOMEM} - 0.1256 \cdot \text{BRANCO}
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{Intercepto}: O coeficiente para o intercepto é $-1.9688$ ($z = -447.659$, $p < 0.001$), indicando que, quando todas as variáveis explicativas são zero, a probabilidade de conclusão do ensino fundamental é baixa.
+    \item \textbf{HOMEM}: O coeficiente para a variável \textbf{HOMEM} é $0.0880$ ($z = 16.165$, $p < 0.001$), indicando que ser do sexo masculino aumenta a probabilidade de conclusão do ensino fundamental.
+    \item \textbf{BRANCO}: O coeficiente para a variável \textbf{BRANCO} é $-0.1256$ ($z = -22.463$, $p < 0.001$), sugerindo que indivíduos brancos têm menor probabilidade de conclusão do ensino fundamental.
+\end{itemize}
+
+\subsection{Modelo para o Ensino Médio}
+
+O modelo de regressão logística para o ensino médio apresentou os seguintes resultados:
+
+\begin{equation}
+\text{Logito}(Y) = -0.8002 - 0.0451 \cdot \text{HOMEM} - 0.0012 \cdot \text{BRANCO}
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{Intercepto}: $-0.8002$ ($z = -256.8108$, $p < 0.001$), indicando um logito negativo da probabilidade de conclusão do ensino médio.
+    \item \textbf{HOMEM}: $-0.0451$ ($z = -11.6520$, $p < 0.001$), sugerindo menor probabilidade de conclusão do ensino médio para homens.
+    \item \textbf{BRANCO}: $-0.0012$ ($z = -0.3132$, $p = 0.7541$), sem significância estatística para a variável \textbf{BRANCO}.
+\end{itemize}
+
+\subsection{Modelo para o Ensino Superior}
+
+O modelo de regressão logística para o ensino superior apresentou os seguintes resultados:
+
+\begin{equation}
+\text{Logito}(Y) = -1.8466 - 0.3733 \cdot \text{HOMEM} + 0.8487 \cdot \text{BRANCO}
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{Intercepto}: $-1.8466$ ($z = -447.304$, $p < 0.001$), sugerindo um logito negativo na ausência dos efeitos das variáveis explicativas.
+    \item \textbf{HOMEM}: $-0.3733$ ($z = -75.919$, $p < 0.001$), indicando menor probabilidade de conclusão do ensino superior para homens.
+    \item \textbf{BRANCO}: $0.8487$ ($z = 174.759$, $p < 0.001$), indicando maior probabilidade de conclusão do ensino superior para indivíduos brancos.
+\end{itemize}
+
+
+\subsection{Tabela Resumo dos Coeficientes}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        & Estimate & Std. Error & z value & Pr(>|z|) \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Ensino Fundamental}} \\
+        (Intercept) & -1.9688 & 0.0044 & -447.659 & < 2.2e-16 \\
+        HOMEM       &  0.0880 & 0.0054 &  16.165  & < 2.2e-16 \\
+        BRANCO      & -0.1256 & 0.0056 & -22.463  & < 2.2e-16 \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Ensino Médio}} \\
+        (Intercept) & -0.8002 & 0.0031 & -256.811 & < 2e-16 \\
+        HOMEM       & -0.0451 & 0.0039 & -11.652  & < 2e-16 \\
+        BRANCO      & -0.0012 & 0.0039 &  -0.3132 & 0.7541 \\
+        \midrule
+        \multicolumn{5}{c}{\textbf{Ensino Superior}} \\
+        (Intercept) & -1.8466 & 0.0041 & -447.304 & < 2.2e-16 \\
+        HOMEM       & -0.3733 & 0.0049 & -75.919  & < 2.2e-16 \\
+        BRANCO      &  0.8487 & 0.0049 & 174.759  & < 2.2e-16 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Resultados do teste z para os coeficientes dos modelos de regressão logística.}
+    \label{tab:coeficientes}
+\end{table}
+
+Os modelos de regressão logística revelam padrões importantes sobre desigualdades de gênero e raça na educação. As políticas públicas devem considerar essas diferenças para promover maior equidade no acesso e conclusão dos níveis educacionais. Estudos futuros podem explorar outros fatores explicativos e interações entre variáveis para aprofundar a compreensão desses fenômenos.
+
+
+\section{Discussão}
+
+\subsection{Discussão dos Resultados}
+
+Os resultados dos modelos de regressão logística para os três níveis de ensino (fundamental, médio e superior) revelam padrões interessantes e significativos sobre as desigualdades de gênero e raça na educação. A seguir, discutimos as implicações dos coeficientes estimados, sua significância estatística e as possíveis razões para os padrões observados.
+
+\subsubsection{Desigualdades de Gênero (Variável HOMEM)}
+
+A variável \textbf{HOMEM} apresentou efeitos distintos nos três níveis de ensino:
+
+\begin{itemize}
+    \item \textbf{Ensino Fundamental}: O coeficiente positivo (\(0.0880\), \(p < 0.001\)) indica que os homens têm maior probabilidade de concluir o ensino fundamental em comparação com as mulheres. Esse resultado pode refletir diferenças culturais ou socioeconômicas que favorecem os homens no acesso e permanência na educação básica. Em algumas regiões, meninos podem ter maior incentivo para permanecer na escola, enquanto meninas podem enfrentar barreiras como trabalho doméstico ou casamento precoce.
+    
+    \item \textbf{Ensino Médio}: O coeficiente negativo (\(-0.0451\), \(p < 0.001\)) sugere que os homens têm menor probabilidade de concluir o ensino médio em comparação com as mulheres. Esse padrão pode estar relacionado a fatores como evasão escolar, engajamento em atividades laborais precoces ou maior exposição a riscos sociais entre os homens jovens.
+    
+    \item \textbf{Ensino Superior}: O coeficiente negativo (\(-0.3733\), \(p < 0.001\)) indica que os homens têm menor probabilidade de concluir o ensino superior em comparação com as mulheres. Esse resultado está alinhado com tendências globais que mostram maior participação feminina no ensino superior, possivelmente devido a políticas de inclusão, maior desempenho acadêmico das mulheres ou mudanças culturais que incentivam a educação feminina.
+\end{itemize}
+
+\subsubsection{Desigualdades Raciais (Variável BRANCO)}
+
+A variável \textbf{BRANCO} também apresentou efeitos variados nos três níveis de ensino:
+
+\begin{itemize}
+    \item \textbf{Ensino Fundamental}: O coeficiente negativo (\(-0.1256\), \(p < 0.001\)) sugere que indivíduos brancos têm menor probabilidade de concluir o ensino fundamental em comparação com não brancos. Esse resultado pode refletir desigualdades socioeconômicas, onde populações não brancas, em alguns contextos, podem ter maior acesso à educação básica devido a políticas de inclusão ou menor exposição a barreiras educacionais.
+    
+    \item \textbf{Ensino Médio}: O coeficiente para \textbf{BRANCO} não foi estatisticamente significativo (\(-0.0012\), \(p = 0.7541\)), indicando que não há diferenças significativas na probabilidade de conclusão do ensino médio entre brancos e não brancos. Esse resultado sugere que, nesse nível de ensino, as desigualdades raciais podem ser menos pronunciadas ou que políticas de inclusão têm sido eficazes em reduzir essas disparidades.
+    
+    \item \textbf{Ensino Superior}: O coeficiente positivo (\(0.8487\), \(p < 0.001\)) indica que indivíduos brancos têm maior probabilidade de concluir o ensino superior em comparação com não brancos. Esse padrão reflete desigualdades estruturais profundas, onde populações brancas têm maior acesso a recursos educacionais, melhores escolas e maior suporte familiar para continuar os estudos em nível superior.
+\end{itemize}
+
+\subsubsection{Significância Estatística e Magnitude dos Efeitos}
+
+Todos os coeficientes, exceto para \textbf{BRANCO} no ensino médio, foram estatisticamente significativos (\(p < 0.001\)), indicando que as variáveis \textbf{HOMEM} e \textbf{BRANCO} têm efeitos robustos e consistentes sobre a probabilidade de conclusão dos diferentes níveis de ensino. A magnitude dos coeficientes também revela que:
+
+\begin{itemize}
+    \item No ensino fundamental, o efeito de \textbf{HOMEM} é positivo, mas relativamente pequeno (\(0.0880\)), enquanto o efeito de \textbf{BRANCO} é negativo e de magnitude moderada (\(-0.1256\)).
+    \item No ensino médio, o efeito de \textbf{HOMEM} é negativo e pequeno (\(-0.0451\)), enquanto o efeito de \textbf{BRANCO} é praticamente nulo (\(-0.0012\)).
+    \item No ensino superior, o efeito de \textbf{HOMEM} é negativo e de magnitude considerável (\(-0.3733\)), enquanto o efeito de \textbf{BRANCO} é positivo e muito forte (\(0.8487\)).
+\end{itemize}
+
+
+\subsubsection{Limitações e Sugestões para Estudos Futuros}
+
+Embora os modelos tenham fornecido insights valiosos, algumas limitações devem ser consideradas:
+
+\begin{itemize}
+    \item O estudo não inclui outras variáveis explicativas relevantes, como renda familiar, localização geográfica ou qualidade da escola.
+    \item A análise não considera interações entre variáveis, como o efeito combinado de gênero e raça.
+\end{itemize}
+
+
+\newpage
+
+
+\section{Considerações finais}
+
+Os modelos de regressão logística revelaram padrões significativos de desigualdade de gênero e raça na educação brasileira. Homens têm maior probabilidade de concluir o ensino fundamental, mas menor probabilidade nos níveis médio e superior. Indivíduos brancos apresentam menor probabilidade de conclusão no ensino fundamental, mas maior no ensino superior. Esses resultados destacam a necessidade de políticas públicas direcionadas, como programas de retenção escolar para homens jovens e ações afirmativas para populações não brancas no ensino superior. A promoção da equidade educacional requer intervenções contínuas e específicas, garantindo oportunidades iguais para todos, independentemente de gênero ou raça.
+
+\end{document}
